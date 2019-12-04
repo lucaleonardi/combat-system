@@ -1,0 +1,232 @@
+<!doctype html>
+
+<html lang="en">
+
+ <head>
+	<meta charset="utf-8">
+	
+	<title>Combat System</title>
+	<meta name="description" content="Combat System with cooldowns">
+	<meta name="author" content="Leonardi Luca">
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   
+	
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+	<!--Import your css-->
+	<link type="text/css" rel="stylesheet" href="css/style.css">
+	
+	<link href="https://fonts.googleapis.com/css?family=Solway:300,400&display=swap" rel="stylesheet">
+	
+
+	<!--[if lt IE 9]>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+	<![endif]-->
+ </head>
+
+ <body onLoad="initialize()">
+ 
+	<div class="container">
+
+		
+		<div class="card-panel">
+		
+			<h2 class="center-align">Combat System</h2>
+			
+			<div class="row" style="width: 100%; margin-bottom: 0px;">
+			
+			 <div class="col s4 center-align" style="padding-left: 0px;padding-right: 0px;">
+				<h5>Player</h5>
+				<p id="playerStamina"></p>
+				<p id="playerDefense"></p>
+				<p id="playerHealth"></p>
+				<p id="playerActionLabel">Action:</p>
+				<p id="playerAction"></p>
+			 </div>
+			 
+			 <div class="col s4 center-align" style="padding-left: 0px;padding-right: 0px;">
+				<h5 style="margin-top: 40px">Round</h5>
+				<h3 style="margin-top: 0px" id="turn"></h3>
+			 </div>
+			 
+			 <div class="col s4 center-align" style="padding-left: 0px;padding-right: 0px;">
+				<h5>CPU</h5>
+				<p id="cpuStamina"></p>
+				<p id="cpuDefense"></p>
+				<p id="cpuHealth"></p>
+				<p id="cpuActionLabel">Action:</p>
+				<p id="cpuAction"></p>
+				
+			 </div>
+			 
+			</div>
+		</div>
+		
+		 <div class="center-align">
+			<a id="recover" onclick="action(playerDeck[4])" class="waves-effect waves-light brown btn-large"><i class="material-icons left">autorenew</i>recover</a>
+			<a id="defense" onclick="action(playerDeck[3])" class="waves-effect waves-light indigo lighten-2 btn-large"><i class="material-icons left">security</i>defense</a>
+		 </div>
+		
+		<div id="score" class="card" style="margin-top: 5px;">
+			<div class="card-content">
+				<h3 class="center-align" id="result" style="margin-top: 0px;margin-bottom: 20px"></h3>
+				<span class="card-title center-align" style="margin-bottom: 10px;">Game details:</span>
+				
+				<center>
+				
+				<div id="scoreContainer"></div>
+				
+				<br>
+				<h5 id="finalScore"></h5>
+				
+			</div>
+			<div class="card-action">
+				<center>
+				<a onclick="initialize()" class="waves-effect waves-light btn-flat center-align" style="color:black;margin-right: 0px;">replay</a>
+			</div>
+		</div>
+		
+		
+	
+	<div id="cardsContainer">
+		<div class="row">
+			<div id="card0" class="col s4"></div>
+			<div id="card1" class="col s4"></div>
+			<div id="card2" class="col s4"></div>	
+		</div>
+	</div>
+	
+	</div>
+	
+	
+	<div id="modalsContainer">
+		<div id="modal_nLightAttacks" class="modal">
+			<div class="modal-content">
+			  <p>Shows the total number of Light Attacks you used</p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+			</div>
+		</div>
+
+		<div id="modal_nMediumAttacks" class="modal">
+			<div class="modal-content">
+			  <p>Shows the total number of Medium Attacks you used</p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+			</div>
+		</div>
+
+		<div id="modal_nHeavyAttacks" class="modal">
+			<div class="modal-content">
+			  <p>Shows the total number of Heavy Attacks you used</p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+			</div>
+		</div>
+
+
+		<div id="modal_attacksCounter" class="modal">
+			<div class="modal-content">
+			  <p>Shows the total number of attacks you did</p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+			</div>
+		</div>
+
+
+		<div id="modal_totStaminaUsed" class="modal">
+			<div class="modal-content">
+			  <p>Shows the total Stamina you consumed during the game</p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+			</div>
+		</div>
+
+		<div id="modal_successfulAttacks" class="modal">
+			<div class="modal-content">
+			  <p>Shows the total number of attacks that actually damaged the avversary</p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+			</div>
+		</div>
+
+		<div id="modal_nLightDefenses" class="modal">
+			<div class="modal-content">
+			  <p>Shows the total number of Light Defenses you used</p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+			</div>
+		</div>
+
+		<div id="modal_nMediumDefenses" class="modal">
+			<div class="modal-content">
+			  <p>Shows the total number of Medium Defenses you used</p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+			</div>
+		</div>
+
+		<div id="modal_nHeavyDefenses" class="modal">
+			<div class="modal-content">
+			  <p>Shows the total number of Heavy Defenses you used</p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+			</div>
+		</div>
+
+		<div id="modal_defensesCounter" class="modal">
+			<div class="modal-content">
+			  <p>Shows the total number of defenses you used</p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+			</div>
+		</div>
+
+		<div id="modal_totDefensePointsUsed" class="modal">
+			<div class="modal-content">
+			  <p>Shows the total number of Defense Points you consumed during the game</p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+			</div>
+		</div>
+		
+		<div id="modal_successfulDefenses" class="modal">
+			<div class="modal-content">
+			  <p>Shows the total number of enemy attacks blocked</p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+			</div>
+		</div>
+
+		<div id="modal_recoversCounter" class="modal">
+			<div class="modal-content">
+			  <p>Shows the total number of Recovers you used</p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+			</div>
+		</div>
+	</div>	
+		
+	
+	<!--JavaScript at end of body for optimized loading-->
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script type="text/javascript" src="js/script_mobile.js"></script>
+	<script type="text/javascript">M.AutoInit();</script>
+ </body>
+</html>

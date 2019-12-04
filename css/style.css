@@ -1,0 +1,22 @@
+body {
+	font-family: 'Solway', serif;
+}
+
+h2 {
+	margin: 0 0 12px 0;
+}
+
+#card0, #card1, #card2 {
+	padding: 0 .25rem;
+}
+
+#playerStamina, #playerDefense, #playerHealth, #playerActionLabel, #playerAction, 
+#cpuStamina, #cpuDefense, #cpuHealth, #cpuActionLabel, #cpuAction {
+	margin-top: 1px;
+	margin-bottom: 1px;
+}
+
+.card-panel {
+	margin: 0;
+	padding: 36px;
+}
