@@ -1,9 +1,11 @@
 body {
 	font-family: 'Solway', serif;
+	background-color: #ffe5ea;
 }
 
-h2 {
-	margin: 0 0 12px 0;
+h1 {
+	margin-bottom: 12px;
+	font-weight: bold;
 }
 
 #card0, #card1, #card2 {
@@ -18,5 +20,5 @@ h2 {
 
 .card-panel {
 	margin: 0;
-	padding: 36px;
+	padding: 12px 12px 36px 12px;
 }
