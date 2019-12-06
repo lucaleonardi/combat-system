@@ -1,4 +1,4 @@
-# combat-system
+# The Combat System
 The combat system I created for a rogue like project
 
 ## How to play
@@ -25,3 +25,6 @@ During the turn each fighter has three actions available:
 **SPD**: The speed of the attack. During a simultaneous attack from each fighter, the faster attack will prevail, canceling the other one. If the speed of the attacks is equal, each attack will inflict damage
 **BRC**: The breach of the attack. If a fighter blocks an attack, this parameter is subtracted from the defender "defense points". If during the block, this value is higher of the defender "defense points", a part of the (or the whole) damage will pass through
 **COST**: The stamina cost of the attack. The stronger the attack, the higher the cost of stamina
+
+
+You can try the prototype [here](https://combat-system.netlify.com/).
